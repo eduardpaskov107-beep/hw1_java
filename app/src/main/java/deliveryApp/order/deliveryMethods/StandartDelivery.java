@@ -1,4 +1,13 @@
 package deliveryApp.order.deliveryMethods;
 
-public class StandartDelivery   {
+public class StandartDelivery implements DeliveryMethod {
+    @Override
+    public boolean isNeedCourier() {
+        return true;
+    }
+
+    @Override
+    public int getPrice() {
+        return 100;
+    }
 }

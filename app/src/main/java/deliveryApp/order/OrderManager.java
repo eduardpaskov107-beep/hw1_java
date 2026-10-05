@@ -1,9 +1,12 @@
 package deliveryApp.order;
 
+import deliveryApp.user.Courier;
+
 import java.util.List;
 
 public class OrderManager {
     private List<Order> orders;
+    private Courier courier;
 
     public void addOrder(Order order) {
         this.orders.add(order);
@@ -13,6 +16,7 @@ public class OrderManager {
         return this.orders;
     }
 
-    public  getCourier() {
+    public Courier getCourier() {
+        return this.courier;
     }
 }

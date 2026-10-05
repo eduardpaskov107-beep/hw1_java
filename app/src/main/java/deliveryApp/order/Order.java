@@ -14,11 +14,12 @@ public class Order {
     private int orderId;
     private OrderStatus status;
     private Courier courier;
-    private int quantity;
     private List<Item> items;
+    private String address;
 
-    public Order(User user, ) {
-
+    public Order(User user) {
+        this.address = user.getAddress();
+        this.status = OrderStatus.CREATED;
     }
 
     public void setDeliveryMethod(DeliveryMethod deliveryMethod){
@@ -33,10 +34,6 @@ public class Order {
         return this.courier;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public void addItem(Item item) {
         this.items.add(item);
     }
@@ -45,7 +42,24 @@ public class Order {
         return this.items;
     }
 
-    public int getPrice() {
+    public int getOrderId() {
+        return this.orderId;
+    }
 
+    public String getAddress() {
+        return this.address;
+    }
+
+    public String getStatus() {
+        return this.status.getDescription();
+    }
+
+    public long getPrice() {
+        long sum = 0;
+        for (Item item : this.items) {
+            sum += (long) item.getProduct().getPrice() * item.getQuantity();
+        }
+        sum += (long) this.deliveryMethod.getPrice() * this.items.size();
+        return sum;
     }
 }

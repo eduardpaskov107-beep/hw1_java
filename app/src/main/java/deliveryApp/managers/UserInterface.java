@@ -6,6 +6,9 @@ import deliveryApp.goods.Product;
 import deliveryApp.order.Order;
 import deliveryApp.order.OrderManager;
 import deliveryApp.order.deliveryMethods.DeliveryMethod;
+import deliveryApp.order.deliveryMethods.FastDelivery;
+import deliveryApp.order.deliveryMethods.PickupDelivery;
+import deliveryApp.order.deliveryMethods.StandartDelivery;
 import deliveryApp.user.User;
 
 
@@ -123,7 +126,7 @@ public class UserInterface {
         String address = scanner.nextLine().trim();
 
         User user = new User(name, address);
-        Order order = new Order(user, orderManager.getCourier());
+        Order order = new Order(user);
 
         DeliveryMethod deliveryMethod = chooseDeliveryMethod();
 
@@ -259,8 +262,9 @@ public class UserInterface {
         System.out.println("Заказ №" + order.getOrderId());
         System.out.println("Адрес: " + order.getAddress());
         System.out.println("Статус: " + order.getStatus());
-        System.out.println("Курьер: " + order.getCourier().getCourierName()
-                + " (рейтинг " + order.getCourier().getRating() + ")");
+        if (order.getDeliveryMethod().isNeedCourier())
+            System.out.println("Курьер: " + order.getCourier().getCourierName()
+                    + " (рейтинг " + order.getCourier().getRating() + ")");
         System.out.println("Доставка: " + getDeliveryMethod(order.getDeliveryMethod()));
         System.out.println("Товары:");
 
