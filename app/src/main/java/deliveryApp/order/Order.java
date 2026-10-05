@@ -1,11 +1,10 @@
 package deliveryApp.order;
-
-
 import deliveryApp.goods.Item;
 import deliveryApp.order.deliveryMethods.DeliveryMethod;
 import deliveryApp.user.Courier;
 import deliveryApp.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -14,11 +13,12 @@ public class Order {
     private int orderId;
     private OrderStatus status;
     private Courier courier;
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
     private String address;
 
-    public Order(User user) {
+    public Order(User user, int id) {
         this.address = user.getAddress();
+        this.orderId = id;
         this.status = OrderStatus.CREATED;
     }
 
@@ -61,5 +61,9 @@ public class Order {
         }
         sum += (long) this.deliveryMethod.getPrice() * this.items.size();
         return sum;
+    }
+
+    public void setCourier(Courier courier) {
+        this.courier = courier;
     }
 }

@@ -126,12 +126,14 @@ public class UserInterface {
         String address = scanner.nextLine().trim();
 
         User user = new User(name, address);
-        Order order = new Order(user);
+        Order order = new Order(user, orderManager.getNewOrderId());
 
         DeliveryMethod deliveryMethod = chooseDeliveryMethod();
-
-
         order.setDeliveryMethod(deliveryMethod);
+
+        if (deliveryMethod.isNeedCourier()) {
+            order.setCourier(orderManager.getCourier());
+        }
 
         while (true) {
             clearTerminal();
