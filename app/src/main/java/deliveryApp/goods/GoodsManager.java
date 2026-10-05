@@ -9,4 +9,11 @@ public class GoodsManager {
             new Product("Карасик буль-буль", 400),
             new Product("Корнишон(не одинокий)", 200)
     ));
+
+    public void addProduct(Product product) { this.products.add(product); }
+
+    public List<Product> getProducts() {
+        return this.products;
+    }
+
 }

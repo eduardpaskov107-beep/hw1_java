@@ -1,6 +1,12 @@
 package deliveryApp.managers;
 
 import deliveryApp.goods.GoodsManager;
+import deliveryApp.goods.Product;
+import deliveryApp.order.Order;
+import deliveryApp.order.OrderManager;
+import deliveryApp.order.deliveryMethods.DeliveryMethod;
+import deliveryApp.user.User;
+
 
 import java.util.List;
 import java.util.Scanner;
