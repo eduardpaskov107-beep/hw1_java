@@ -1,6 +1,7 @@
 package deliveryApp.managers;
 
 import deliveryApp.goods.GoodsManager;
+import deliveryApp.goods.Item;
 import deliveryApp.goods.Product;
 import deliveryApp.order.Order;
 import deliveryApp.order.OrderManager;
@@ -125,6 +126,8 @@ public class UserInterface {
         Order order = new Order(user, orderManager.getCourier());
 
         DeliveryMethod deliveryMethod = chooseDeliveryMethod();
+
+
         order.setDeliveryMethod(deliveryMethod);
 
         while (true) {
@@ -173,11 +176,12 @@ public class UserInterface {
             }
 
             Product orderProduct = new Product(
-                    selectedProduct.getProductName(),
+                    selectedProduct.getName(),
                     selectedProduct.getPrice()
             );
-            orderProduct.setQuantity(quantity);
-            order.addProduct(orderProduct);
+
+            Item item = new Item(orderProduct, quantity);
+            order.addItem(item);
 
             System.out.println("Товар добавлен");
             pause();
@@ -260,11 +264,11 @@ public class UserInterface {
         System.out.println("Доставка: " + getDeliveryMethod(order.getDeliveryMethod()));
         System.out.println("Товары:");
 
-        for (Product product : order.getProducts()) {
+        for (Item item : order.getItems()) {
             System.out.printf("  - %s x%d - %d. руб \n",
-                    product.getProductName(),
-                    product.getQuantity(),
-                    product.getPrice() * product.getQuantity());
+                    item.getProduct().getName(),
+                    item.getQuantity(),
+                    item.getProduct().getPrice() * item.getQuantity());
         }
 
         System.out.printf("Итого: %d. руб \n", order.getPrice());
@@ -313,7 +317,7 @@ public class UserInterface {
             Product product = products.get(i);
             System.out.printf("%d. %s - %d. руб \n",
                     i + 1,
-                    product.getProductName(),
+                    product.getName(),
                     product.getPrice());
         }
     }
