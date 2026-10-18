@@ -2,12 +2,13 @@ package deliveryApp.goods;
 
 public class Product {
     private String productName;
-    private int quantity = 1;
+    private int quantity;
     private int price;
 
-    public  Product(String productName, int price) {
+    public Product(String productName, int price,`int quantity) {
         this.productName = productName;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public void setQuantity(int quantity) {

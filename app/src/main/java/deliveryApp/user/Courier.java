@@ -3,13 +3,13 @@ package deliveryApp.user;
 public class Courier {
     private String courierName;
     private int courierId;
-    private int rating;
+    private boolean isFree;
 
     private static int idCounter = 0;
 
-    public Courier(String courierName, int rating) {
+    public Courier(String courierName) {
         this.courierName = courierName;
-        this.rating = rating;
+        this.isFree = true;
         this.courierId = idCounter++;
     }
 
@@ -21,7 +21,11 @@ public class Courier {
         return courierId;
     }
 
-    public int getRating() {
-        return rating;
+    public boolean isFree() {
+        return isFree;
+    }
+
+    public void setIsFree(boolean isFree) {
+        this.isFree = isFree;
     }
 }

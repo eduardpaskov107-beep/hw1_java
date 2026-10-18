@@ -23,11 +23,14 @@ public class Order {
         orderId = idCounter++;
         this.user = user;
         address = user.getUserAddress();
-        status = "Готовится";
+        status = deliveryStatus.processing.getDescription();
         this.courier = courier;
     }
 
     public void addProduct(Product product) {
+        if (p)
+
+
         for (Product p : products) {
             if (p.getProductName().equals(product.getProductName())) {
                 p.setQuantity(p.getQuantity() + product.getQuantity());
@@ -53,8 +56,6 @@ public class Order {
         return address;
     }
 
-    // цена формируется от цены товаров + цена доставки,
-    // которая зависит от типа и количества
     public int getPrice() {
         price = 0;
         for (Product product : products) {
@@ -70,6 +71,10 @@ public class Order {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Courier getCourier() {
