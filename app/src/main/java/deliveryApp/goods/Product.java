@@ -1,33 +1,30 @@
 package deliveryApp.goods;
 
 public class Product {
+    private int productId;
     private String productName;
-    private int quantity;
     private int price;
+    private int quantity;
 
-    public Product(String productName, int price,`int quantity) {
+    public Product(String productName, int price, int quantity) {
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public int getProductId() { return productId; }
+    public void setProductId(int productId) { this.productId = productId; }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+    public String getProductName() { return productName; }
+    public int getPrice() { return price; }
+    public int getQuantity() { return quantity; }
 
-    public String getProductName() {
-        return productName;
-    }
+    public void setPrice(int price) { this.price = price; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public int getPrice() {
-        return price;
+    @Override
+    public String toString() {
+        return String.format("%d %s %d руб. (на складе: %d)",
+                productId, productName, price, quantity);
     }
 }

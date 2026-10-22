@@ -1,8 +1,7 @@
-import deliveryApp.managers.UserInterface;
+import deliveryApp.App;
 
 public class Main {
     public static void main(String[] args) {
-        UserInterface userInterface = new UserInterface();
-        userInterface.start();
+        new App().start();
     }
 }
